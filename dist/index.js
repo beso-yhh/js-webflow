@@ -1,9 +1,11 @@
+"use strict";
 (() => {
   // src/cms/populate-external-data/index.ts
   window.fsAttributes = window.fsAttributes || [];
   window.fsAttributes.push([
     "cmsload",
     async (listInstances) => {
+      document.body.style.backgroundColor = "red";
       const [listInstance] = listInstances;
       const [firstItem] = listInstance.items;
       const itemTemplateElement = firstItem.element;

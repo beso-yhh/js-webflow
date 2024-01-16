@@ -4,10 +4,12 @@ import type { Product } from './types';
 /**
  * Populate CMS Data from an external API.
  */
+
 window.fsAttributes = window.fsAttributes || [];
 window.fsAttributes.push([
   'cmsload',
   async (listInstances: CMSList[]) => {
+    document.body.style.backgroundColor = 'red';
     // Get the list instance
     const [listInstance] = listInstances;
 
