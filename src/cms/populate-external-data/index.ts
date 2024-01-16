@@ -56,13 +56,13 @@ const createItem = (product: Product, templateElement: HTMLDivElement) => {
   const newItem = templateElement.cloneNode(true) as HTMLDivElement;
 
   // Query inner elements
-  const image = newItem.querySelector<HTMLImageElement>('[data-element="image"]');
+  // const image = newItem.querySelector<HTMLImageElement>('[data-element="image"]');
   const title = newItem.querySelector<HTMLHeadingElement>('[data-element="title"]');
   const category = newItem.querySelector<HTMLDivElement>('[data-element="category"]');
   const description = newItem.querySelector<HTMLParagraphElement>('[data-element="description"]');
 
   // Populate inner elements
-  if (image) image.src = product.image;
+  // if (image) image.src = product.image;
   if (title) title.textContent = product.title;
   if (category) category.textContent = product.category;
   if (description) description.textContent = product.description;
