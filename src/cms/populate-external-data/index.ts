@@ -1,4 +1,4 @@
-import type { CMSFilters } from '../../types/CMSFilters';
+import type { CMSList } from '../../types/CMSList';
 import type { Product } from './types';
 
 /**
@@ -6,13 +6,10 @@ import type { Product } from './types';
  */
 window.fsAttributes = window.fsAttributes || [];
 window.fsAttributes.push([
-  'cmsfilter',
-  async (filtersInstances: CMSFilters[]) => {
-    // Get the filters instance
-    const [filtersInstance] = filtersInstances;
-
+  'cmsload',
+  async (listInstances: CMSList[]) => {
     // Get the list instance
-    const { listInstance } = filtersInstance;
+    const [listInstance] = listInstances;
 
     // Save a copy of the template
     const [firstItem] = listInstance.items;
@@ -29,31 +26,6 @@ window.fsAttributes.push([
 
     // Populate the list
     await listInstance.addItems(newItems);
-
-    // Get the template filter
-    const filterTemplateElement = filtersInstance.form.querySelector<HTMLLabelElement>('[data-element="filter"]');
-    if (!filterTemplateElement) return;
-
-    // Get the parent wrapper
-    const filtersWrapper = filterTemplateElement.parentElement;
-    if (!filtersWrapper) return;
-
-    // Remove the template from the DOM
-    filterTemplateElement.remove();
-
-    // Collect the categories
-    const categories = collectCategories(products);
-
-    // Create the new filters and append the to the parent wrapper
-    for (const category of categories) {
-      const newFilter = createFilter(category, filterTemplateElement);
-      if (!newFilter) continue;
-
-      filtersWrapper.append(newFilter);
-    }
-
-    // Sync the CMSFilters instance with the new created filters
-    filtersInstance.storeFiltersData();
   },
 ]);
 
